@@ -61,10 +61,10 @@ Getting started video - basic installation on Linux (click image below):
 General installation steps:
 ---------------------------
 - Download the application either using git commands (for those who know how to use git) or download the master archive here: https://github.com/softcoder/membership-signup/archive/master.zip and extract to a folder on your local PC.
-- Edit the values in [config-default.php](php/config-default.php) to suit your environment. (see Configuration section below)
+- Edit the values in [config-default.php](config-default.php) to suit your environment. (see Configuration section below)
 - Rename the file config-default.php to config.php
 - Upload the files in the php folder to a location on your webserver (this will be the root folder for membership-signup).
-- If using IIS (Apache users skip to 'Open the url') you should import the file [IIS_Import.htaccess](php/IIS_Import.htaccess) following these steps:
+- If using IIS (Apache users skip to 'Open the url') you should import the file [IIS_Import.htaccess](IIS_Import.htaccess) following these steps:
 -  1. Start IIS Manager. 
 -  2. On the left, in the Connections pane, select 'Sites' then 'Default Web Site'.
 -  3. Create a new virtual folder pointing to the root php folder of membership signup (example alias svvfd)
@@ -99,9 +99,9 @@ Configuration:
 --------------
 
 The most important information that you require to configure is located in config.php. 
-You must create this file (or rename [config-default.php](php/config-default.php) to config.php) and supply configuration values.
+You must create this file (or rename [config-default.php](config-default.php) to config.php) and supply configuration values.
 The following explains the main sections in config.php. The structures used in coinfig.php are
-defined in [config_interfaces.php](php/config_interfaces.php) if you are interested to see their definitions.
+defined in [config_interfaces.php](config_interfaces.php) if you are interested to see their definitions.
 
 
 FAQ:
@@ -255,47 +255,6 @@ phpunit
 The Github actions CI automation results can be found here:
 
 https://github.com/softcoder/membership-signup/actions/workflows/php.yml
-
-Experimental Work:
-------------------
-
-Angular client:
----------------
-We have begun porting the user interface to Angular (v8+). Currently this UI is partially ported from the
-legacy twig UI, in order to build and deploy to your server:
-
-- Install Node.js® and npm (https://nodejs.org/en/download/) if they are not already on your machine.
-- Install the Angular CLI globally, open a console prompt: 
-
-npm install -g @angular/cli
-
-- Install project dependencies (the angular folder below is the folder you get from the git source tree):
-
-cd angular
-npm install
-
-- Compile and Build the angular project:
-
-ng build --base-href=/~softcoder/svvfd1/php/ngui/ --output-path=../php/ngui/ --aot
-
-Notice above the base-href which is the document root path on your webserver where membership signup is installed (same folder where config.php exists). Also notice the compiled javascript project will be placed into the membership signup php/ngui folder.
-
-- Copy the ngui folder to your web server's Root membership signup folder (same folder as config.php)
-- visit the SPA (single page application) login page and try it out:
-  
-  /~softcoder/svvfd1/php/ngui/index.html
-
-If you installed membership signup in the root folder of a subdomain for example http://svvfd.yourhost.com, you would run the script as follows:
-
-ng build --base-href=/ngui/ --output-path=../php/ngui/ --aot
-
-then copy the ngui folder to the root folder on svvfd.yourhost.com  
-
-Serverless support:
--------------------
-We have started work on the application architecture to prepare for supporting various vendors who offer serverless computing platforms. Documentation can be read regarding deploying to Google Cloud Run (GCR) using a docker container
-https://github.com/softcoder/membership-signup/tree/master/docker  
-
 
 Contributions:
 --------------
