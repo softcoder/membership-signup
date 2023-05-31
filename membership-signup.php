@@ -314,7 +314,7 @@ class ProcessRequest {
         
         if ($log !== null) $log->trace("Email access code to user: [$member_email] PHP version [".PHP_VERSION_ID."] TOTP timeout [$accesscode_seconds] TOTP secret [$accesscode_key]");
         
-        $otp = TOTP::create($accesscode_key,$accesscode_seconds);
+        $otp = TOTP::create($accesscode_key, $accesscode_seconds);
         
         if(isset($isaccesscode_req)) {
             
@@ -336,7 +336,7 @@ class ProcessRequest {
         }
 
    	    $twofaKey = $this->request_variables['accesscode_textbox'];
-        $valid2FA = $otp->verify($twofaKey);
+        $valid2FA = $otp->verify($twofaKey,null,$accesscode_seconds-1);
         if($valid2FA == false) {
             echo "<p>You entered an invalid access code [$twofaKey] for email address [$member_email]</p>";
             if ($log !== null) $log->error("Notified user with INVALID access code: [$twofaKey] for email address [$member_email]");

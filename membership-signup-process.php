@@ -13,7 +13,7 @@ error_reporting(E_ALL);
 
 require_once 'membership-signup.php';
 
-$processLogin = new \riprunner\ProcessRequest(
+$processRequest = new \riprunner\ProcessRequest(
 	$SITECONFIGS,
 	(isset($request_variables) ? $request_variables : null),
 	(isset($server_variables) ? $server_variables : null),
@@ -21,4 +21,4 @@ $processLogin = new \riprunner\ProcessRequest(
 	(isset($print_callback) ? $print_callback : null),
 	(isset($getfile_callback) ? $getfile_callback : null)
 	);
-$processLogin->execute();
+$processRequest->execute();
