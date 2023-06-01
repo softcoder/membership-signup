@@ -63,7 +63,7 @@ General installation steps:
 - Download the application either using git commands (for those who know how to use git) or download the master archive here: https://github.com/softcoder/membership-signup/archive/master.zip and extract to a folder on your local PC.
 - Edit the values in [config-default.php](config-default.php) to suit your environment. (see Configuration section below)
 - Rename the file config-default.php to config.php
-- Upload the files in the php folder to a location on your webserver (this will be the root folder for membership-signup).
+- Upload the files in the root folder to a location on your webserver (this will be the root folder for membership-signup).
 - If using IIS (Apache users skip to 'Open the url') you should import the file [IIS_Import.htaccess](IIS_Import.htaccess) following these steps:
 -  1. Start IIS Manager. 
 -  2. On the left, in the Connections pane, select 'Sites' then 'Default Web Site'.
@@ -72,28 +72,25 @@ General installation steps:
 -  5. On the right, in the Actions pane, click 'Open Feature'.
 -  6. On the right, in the Actions pane, click 'Import Rules'.
 -  7. Select the file IIS_import.htaccess using the ... elipses and import, then click apply.
-- extract the contents of the appropriate third party archive into your membership signup root installation folder:
-   ie: vendor-php-5.6.zip or vendor-php-X.X.zip (check for other supported versions where filename exists in repo)
-- Open the url: http://www.yourwebserver.com/uploadlocation/install.php (substitute your root membership signup host://uploadpath/install.php)
-- If everything was done correctly you should see an install page offering to install one the firehall's 
-  you configured in config.php (we support more than 1 firehall if desired). Select the firehall and click install.
-- If successful the installation will display the admin user's password. Click the link to login using it.
+- On the server run the following command from the membership signup root folder: composer install
+- Open the url: http://www.yourwebserver.com/uploadlocation/
+- If everything was done correctly you should see a member form index page.
 
-Linux installation notes:
--------------------------
-1. Install LAMP (Linux, Apache, MySQL and PHP) apps
-2. Install these dependencies:
-- sudo a2enmod rewrite
-- sudo apt install php7.1-xml
-- sudo apt install php7.1-mysql 
-- sudo apt install php7.1-imap
-- sudo apt install php7.1-mcrypt
-- sudo apt install php7.1-curl
-- sudo apt install php7.1-ldap
-- sudo apt install php7.1-sqlite3
-3. Restart Apache: sudo systemctl restart apache2
-4. Configure web virtual host (if desired)
-5. Copy membership signup (PHP folder) to the appropriate folder on the target host
+A Linux based bash script that handles most of the installation steps may look like:
+
+#!/bin/bash
+echo 'Downloading Membership Signup files...'
+git clone https://github.com/softcoder/membership-signup.git
+
+echo 'Installing dependencies using Composer...'
+cd membership-signup
+composer install
+
+echo 'Moving config-default.php to config.php...'
+mv config-default.php config.php
+
+echo 'Please edit the values in config.php and then visit the URL root where you installed this application...'
+
 
 Configuration:
 --------------
@@ -127,54 +124,6 @@ fix it by:
 
 sudo a2enmod rewrite && sudo systemctl restart apache2
 
-- When calling install.php if you get:
-
-Fatal error: Uncaught Error: Call to undefined function simplexml_load_file() in ...
-
-then you must install extensions in your php config:
-
-sudo apt install php7.1-xml
-sudo systemctl restart apache2
-
-- If after calling install.php you get: 
-
-Warning: fopen(/home/softcoder/www/svvfd/public_html/rr/application.log): failed to open stream: Permission denied in ...
-
-then you must change access permission to application.log to:
-
--rw-rw-rw-  1 softcoder softcoder   120 Apr 13 10:15 application.log
-
-- if after calling install.php you get:
-
-Error detected, message : could not find driver, Code : 0
-
-then you must check application.log if you see:
-
-2017-04-13T10:15:38-07:00 ERROR DB Connect for: dsn [mysql:host=localhost;] user [myvfd] error [could not find driver] 
-
-then you must:
-
-sudo apt-get install php7.1-mysql 
-sudo systemctl restart apache2
-
-- If after calling install.php you get:
-
-Error detected, message : SQLSTATE[HY000] [1045] Access denied for user 'myvfd'@'localhost' (using password: YES), Code : 1045
-
-You need to make sure the mysql user specified exists and has access to connect to the server.
-
-- If after calling install.php you get:
-
-Fatal error: Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1044 Access denied for user 'myvfd'@'%' to database 'myvfd' in ...
-
-ensure mysql user has dba access.
-
-- If after calling install.php you get:
-
-Fatal error: Uncaught PDOException: SQLSTATE[HY000] [1049] Unknown database 'myvfd' in
-
-create the database first, or goto install page: install.php
-
 - Make sure your membership signup folder has grant execution access to scripts:
 
 sudo chmod 777 -R ~/www/svvfd/public_html/
@@ -194,10 +143,6 @@ Call to undefined function finfo_open()
 
 extension=php_fileinfo.dll
 
-- If you get the following error in the logs and no sms message is sent:
-
-Curl error: SSL certificate problem: self signed certificate in certificate chain
-
 - you must download: http://curl.haxx.se/ca/cacert.pem
 
 edit php.ini
@@ -205,42 +150,6 @@ edit php.ini
 [curl]
 curl.cainfo=c:/cert/cacert.pem
 
-- If some of your users mobile devices do not show a clickable URL in the sms callout:
-
-then your newer website domain name may not be recognized. For example some phones don't 
-understand the following link because it uses a newer .solutions format:
-
-https://vsoft.solutions/
-
-- you must find a host that you have access to, which has a well known format example:
-
-https://vejvoda.com/
-
-create a folder on that host for example a folder named 'rr' and create a file name '.htaccess' 
-in the 'rr' folder with the following content (notice rr matches the folder name you created, 
-and the part to the right tells the webserver where to forward to, $1 copies url parameters):
-
-RedirectMatch 301 /rr(.*) https://svvfd.vsoft.solutions$1
-
-Next create a custom sms twig file in the root folder where config.php exists, inside a new folder 
-you wil lcreated named:
-
-views-custom
-
-and name this file:
-
-sms-callout-msg-custom.twig.html
-
-with the following contents:
-
-{% extends "sms-callout-msg.twig.html" %}
-
-{% block sms_url_webroot %}
-https://vejvoda.com/rr/
-{% endblock %}
-
-This will use the website: https://vejvoda.com/rr/ as a proxy to forward requests to: https://svvfd.vsoft.solutions
-which all phones would recognize because it uses the well known .com format
 
 Development:
 --------------
