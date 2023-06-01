@@ -48,15 +48,9 @@ System Requirements:
 
 Installation:
 -------------
-Getting started video - basic installation on Windows (click image below):
-
-[![Getting Started install](http://img.youtube.com/vi/ZyUfvYsW39Q/0.jpg)](https://youtu.be/ZyUfvYsW39Q)
-
 Getting started video - basic installation on Linux (click image below):
 
-[![Ubuntu Host quick install](http://img.youtube.com/vi/PkREVKmyQzA/0.jpg)](https://youtu.be/PkREVKmyQzA)
-
-[![Linux Host install](http://img.youtube.com/vi/ZDhPJ7qIXDc/0.jpg)](https://youtu.be/ZDhPJ7qIXDc)
+[![Getting Started install](http://img.youtube.com/vi/HfDnYGbhWRQ/0.jpg)](https://youtu.be/HfDnYGbhWRQ)
 
 General installation steps:
 ---------------------------
