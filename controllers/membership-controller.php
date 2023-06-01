@@ -12,19 +12,28 @@ if(defined('__RIPRUNNER_ROOT__') === false) {
 }
 
 require_once __RIPRUNNER_ROOT__ . '/template.php';
-//require_once __RIPRUNNER_ROOT__ . '/authentication/authentication.php';
 require_once __RIPRUNNER_ROOT__ . '/models/global-model.php';
 require_once __RIPRUNNER_ROOT__ . '/models/membership-model.php';
 
-// Register our view and variables for the template
-//setcookie(\riprunner\Authentication::getJWTTokenName(), '', time() - 3600, '/', '', false, true);
-//\riprunner\Authentication::sec_session_start();
 $_SESSION['LOGIN_REFERRER'] = basename(__FILE__);
-new LoginViewModel($global_vm, $view_template_vars);
+new MembershipViewModel($global_vm, $view_template_vars);
+
+$view_form = 'membership-index';
+// Check for routing action
+$route_action = get_query_param('route_action');
+if(isset($route_action) === true) {
+    if($route_action === 'membership') {
+        $view_form = 'membership-start';
+    }
+    else if($route_action === 'waiver') {
+        $view_form = 'membership-waiver';
+    }
+}
+
 // Load out template
 $template = $twig->resolveTemplate(
-		array('@custom/membership-start-custom.twig.html',
-			  'membership-start.twig.html'));
+		array("@custom/$view_form-custom.twig.html",
+			  "$view_form.twig.html"));
 
 // Output our template
 echo $template->render($view_template_vars);

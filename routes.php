@@ -26,7 +26,24 @@ try {
     }
 }
 catch(\Exception $e) {
-    \handle_config_error('', $e);
+    echo '<!DOCTYPE html>'.PHP_EOL.
+    '<html>'.PHP_EOL.
+    '<head>'.PHP_EOL.
+    '<meta charset="UTF-8">'.PHP_EOL.
+    '<title>Error Detected</title>'.PHP_EOL.
+    '<link rel="stylesheet" href="styles/main.css" />'.PHP_EOL.
+    '</head>'.PHP_EOL.
+    '<body>'.PHP_EOL.
+    '<p style="font-size:40px; color: white">'.
+    '<hr></p>'.PHP_EOL.
+    '<p style="font-size:35px; color: red">'.PHP_EOL.
+    'Error detected, message : ' . $e->getMessage().', '.'Code : ' . $e->getCode().PHP_EOL.
+    'trace : ' . $e-> getTraceAsString().PHP_EOL.
+    '<br><span style="font-size:35px; color: black">Please create a config.php script in the root installation path</span>'.PHP_EOL.
+    '</p><hr>'.PHP_EOL.
+    '</body>'.PHP_EOL.
+    '</html>';
+
     return;
 }
 
@@ -34,24 +51,37 @@ require_once __RIPRUNNER_ROOT__ . '/functions.php';
 require __DIR__ . '/vendor/autoload.php';
 
 
-// The main membership URL
+// The main index URL
 \Flight::route('GET|POST /', function () {
     global $SITECONFIGS;
-    //$query = array();
-    //parse_str($params, $query);
+    global $log;
 
     $root_url = getRootURLFromRequest(\Flight::request()->url, $SITECONFIGS);
+    
+    $log->trace("Route got / request url [".\Flight::request()->url . "] root url [".$root_url."]");
     \Flight::redirect($root_url .'/controllers/membership-controller.php');
 });
 
-// The membership waiver URL
-\Flight::route('GET|POST /waiver', function () {
+// The membership URL
+\Flight::route('GET|POST /membership-route', function () {
     global $SITECONFIGS;
-    //$query = array();
-    //parse_str($params, $query);
+    global $log;
 
     $root_url = getRootURLFromRequest(\Flight::request()->url, $SITECONFIGS);
-    \Flight::redirect($root_url .'/controllers/membership-waiver-controller.php');
+    
+    $log->trace("Route got /membership-route request url [".\Flight::request()->url . "] root url [".$root_url."]");
+    \Flight::redirect($root_url .'/controllers/membership-controller.php?route_action=membership');
+});
+
+// The membership waiver URL
+\Flight::route('GET|POST /waiver-route', function () {
+    global $SITECONFIGS;
+    global $log;
+
+    $root_url = getRootURLFromRequest(\Flight::request()->url, $SITECONFIGS);
+    
+    $log->trace("Route got /waiver-route request url [".\Flight::request()->url . "] root url [".$root_url."]");
+    \Flight::redirect($root_url .'/controllers/membership-controller.php?route_action=waiver');
 });
 
 

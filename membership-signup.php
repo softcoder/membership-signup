@@ -177,6 +177,7 @@ class ProcessRequest {
         else {
             echo "<p>Done! Your membership application will be reviewed shortly.</p>";
         }
+        echo "<a href='".$gvm->RR_DOC_ROOT."/'>Main Index</a>";
         
         echo "<iframe src='$outputPDF' width='100%' height='100%'></iframe>";
         

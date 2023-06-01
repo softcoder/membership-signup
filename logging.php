@@ -33,6 +33,7 @@ $log = null;
 class AppLogger extends Logger {
 
 	private $log;
+	
 	public function setLogger($mylogger) {
 		$this->log = $mylogger;
 	}
@@ -40,7 +41,8 @@ class AppLogger extends Logger {
 		//$this->log->info($msg);
 	}
 	public function warn($msg) {
-		$this->log->warn($msg);
+		//$this->log->warn($msg);
+		$this->log->error($msg);
 	}
 
 	//$appender = $log->getRootLogger()->getAppender('myAppender');

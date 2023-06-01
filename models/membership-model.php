@@ -10,7 +10,7 @@ require_once __RIPRUNNER_ROOT__ . '/functions.php';
 require_once __RIPRUNNER_ROOT__ . '/models/base-model.php';
 
 // The model class handling variable requests dynamically
-class LoginViewModel extends BaseViewModel {
+class MembershipViewModel extends BaseViewModel {
 	
 	protected function getVarContainerName() { 
 		return "loginvm";
