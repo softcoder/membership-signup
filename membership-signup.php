@@ -20,6 +20,7 @@ require_once __RIPRUNNER_ROOT__.'/config.php';
 require __RIPRUNNER_ROOT__.'/vendor/autoload.php';
 require_once __RIPRUNNER_ROOT__ . '/models/global-model.php';
 
+require_once __RIPRUNNER_ROOT__ . '/template.php';
 require_once __RIPRUNNER_ROOT__.'/functions.php';
 require_once __RIPRUNNER_ROOT__.'/logging.php';
 
@@ -37,6 +38,7 @@ class ProcessRequest {
 	private $HEADERS_FUNC;
 	private $PRINT_FUNC;
 	private $GET_FILE_CONTENTS_FUNC;
+	private $twigEnv;
 
 	public function __construct($SITES,$request_variables=null,$server_variables=null,$hf=null,$pf=null,$gfcf=null) {
 		$this->SITES = $SITES;
@@ -45,6 +47,10 @@ class ProcessRequest {
 		$this->HEADERS_FUNC = $hf;
 		$this->PRINT_FUNC = $pf;
 		$this->GET_FILE_CONTENTS_FUNC = $gfcf;
+    }
+
+    public function setTwigEnv($twigEnv) {
+        $this->twigEnv = $twigEnv;
     }
 
 	private function header(string $header) {
@@ -184,20 +190,16 @@ class ProcessRequest {
         if($gvm->site->PDFSettings->EMAILPDF_TO_MEMBER == true || 
            empty($gvm->site->PDFSettings->EMAILPDF_TO_DIRECTORS) == false) {
 
-            $this->emailPDFToUsers($gvm, $member_email, $outputPDF);
+            $this->emailPDFToUsers($gvm, $member_email, $pdfLocation, $outputPDF);
         }
 	}
 
-    private function emailPDFToUsers($gvm, $member_email, $outputPDF) {
-       $subject = 'Notification from Caledonia Ramblers - Membership Form';
+    private function emailPDFToUsers($gvm, $member_email, $inputPDF, $outputPDF) {
+       
        // Email the message to users
-       if(isset($iswaiver)) {
-          $msg = "Your Caledonia Ramblers waiver form has been submitted to the membership director! Please ensure that you send your membership payment and member application form in order to complete the membership process.";
-          $subject = 'Notification from Caledonia Ramblers - Waiver Form';
-       }
-       else {
-          $msg = "Your Caledonia Ramblers membership signup form has been submitted to the membership director! Please ensure that you send your membership payment and waiver form in order to complete the membership process.";                  
-       }
+       $subject = $this->getFormEmailSubject($inputPDF);
+       $msg = $this->getFormEmailMsg($inputPDF);
+       
        $users = array();
        if($gvm->site->PDFSettings->EMAILPDF_TO_MEMBER) {
            array_push($users,$member_email);
@@ -322,8 +324,8 @@ class ProcessRequest {
    		    $twofaKey = $otp->now();
    		    
    		    $accesscode_minutes = $accesscode_seconds/60;
-            $msg = "The following Caledonia Ramblers access code is valid for $accesscode_minutes minutes: $twofaKey";
-            $subject = 'Notification from Caledonia Ramblers - Access Code';
+            $subject = $this->getAccessCodeEmailSubject($twofaKey,$member_email,$accesscode_minutes);
+            $msg = $this->getAccessCodeEmailMsg($twofaKey,$member_email,$accesscode_minutes);
 
             $users = array();
             array_push($users,$member_email);
@@ -356,6 +358,98 @@ class ProcessRequest {
         }
 	}
 	
+	private function getTwigEnv() {
+	    global $twig;
+	    if($this->twigEnv != null) {
+	        return	$this->twigEnv;
+	    }
+	    return $twig;
+	}
+	
+	public function getAccessCodeEmailSubject($twofaKey,$member_email,$accesscode_minutes) {
+		global $log;
+
+		$view_template_vars = array();
+		$view_template_vars['twofaKey'] = $twofaKey;
+		$view_template_vars['member_email'] = $member_email;
+		$view_template_vars['accesscode_minutes'] = $accesscode_minutes;
+
+		$view_templates = array();
+		array_push($view_templates, '@custom/access-code-email-subject-msg-custom.twig.html');
+		array_push($view_templates, 'access-code-email-subject-msg.twig.html');
+		
+		// Load our template
+		$template = $this->getTwigEnv()->resolveTemplate($view_templates);
+		// Output our template
+		$msg = $template->render($view_template_vars);
+		
+		if($log != null) $log->trace("Access Code Email subject msg [$msg]");
+		
+		return $msg;
+	}
+
+	public function getAccessCodeEmailMsg($twofaKey,$member_email,$accesscode_minutes) {
+		global $log;
+
+		$view_template_vars = array();
+		$view_template_vars['twofaKey'] = $twofaKey;
+		$view_template_vars['member_email'] = $member_email;
+		$view_template_vars['accesscode_minutes'] = $accesscode_minutes;
+
+		$view_templates = array();
+		array_push($view_templates, '@custom/access-code-email-msg-custom.twig.html');
+		array_push($view_templates, 'access-code-email-msg.twig.html');
+		
+		// Load our template
+		$template = $this->getTwigEnv()->resolveTemplate($view_templates);
+		// Output our template
+		$msg = $template->render($view_template_vars);
+		
+		if($log != null) $log->trace("Access Code Email msg [$msg]");
+		
+		return $msg;
+	}
+
+	public function getFormEmailSubject($inputPDF) {
+		global $log;
+
+		$view_template_vars = array();
+		$view_template_vars['pdf'] = basename($inputPDF);
+
+		$view_templates = array();
+		array_push($view_templates, '@custom/pdf-form-email-subject-msg-'.basename($inputPDF).'-custom.twig.html');
+		array_push($view_templates, 'pdf-form-email-subject-msg-'.basename($inputPDF).'.twig.html');
+		
+		// Load our template
+		$template = $this->getTwigEnv()->resolveTemplate($view_templates);
+		// Output our template
+		$msg = $template->render($view_template_vars);
+		
+		if($log != null) $log->trace("PDF Form [$inputPDF] Email subject msg [$msg]");
+		
+		return $msg;
+	}
+
+	public function getFormEmailMsg($inputPDF) {
+		global $log;
+
+		$view_template_vars = array();
+		$view_template_vars['pdf'] = basename($inputPDF);
+
+		$view_templates = array();
+		array_push($view_templates, '@custom/pdf-form-email-msg-'.basename($inputPDF).'-custom.twig.html');
+		array_push($view_templates, 'pdf-form-email-msg-'.basename($inputPDF).'.twig.html');
+		
+		// Load our template
+		$template = $this->getTwigEnv()->resolveTemplate($view_templates);
+		// Output our template
+		$msg = $template->render($view_template_vars);
+		
+		if($log != null) $log->trace("PDF Form [$inputPDF] Email msg [$msg]");
+		
+		return $msg;
+	}
+
     private function sendEmailMessage($attachment, $msg, $subject, $users, $gvm) {
     	global $log;
 
