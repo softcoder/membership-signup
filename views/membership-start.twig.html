@@ -362,7 +362,8 @@
                     		     onKeyPress="enterMovesFocus(this,event,document.getElementById('accesscode_textbox'))"/>
                     	</td>     
                     	<td>
-                    	  <input type="submit" id="btnAccessCode" value="Email a code" form="accessform" />
+                    	  <input type="button" id="btnAccessCode" value="Email a code" form="accessform" onclick="javascript:getAccessCodeAsynch()"/>
+                    	  
                         </td>
 	                </tr>
                     <tr>
@@ -382,7 +383,7 @@
                    
         	<form action="{{ gvm.RR_DOC_ROOT }}/membership-signup-process.php?accesscode" method="post" 
                     accept-charset="utf-8" id="accessform" name="accessform" target="access-form" 
-                    onsubmit="return getAccessCode(this)">
+                    onsubmit="return getAccessCode()">
               
               <input type="hidden" id="emailaccess" name="emailaccess" />
               
@@ -399,7 +400,36 @@
     </body>
     
     <script type="text/JavaScript">
-    function getAccessCode(form) {
+    
+    function getAccessCodeAsynch() {
+        //debugger;
+        
+        if(getAccessCode() == true) {
+            var emailctl = document.getElementById('emailaddress_textbox');
+            var email = emailctl.value;
+        
+            var xhr = new XMLHttpRequest() 
+            xhr.open("POST", "{{ gvm.RR_DOC_ROOT }}/membership-signup-process.php?accesscode"); 
+            xhr.onreadystatechange = function (oEvent) {
+                //debugger;
+                
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                      console.log(xhr.responseText)
+                      document.getElementById('accesscode-msg').textContent = 'An Access Code was emailed to: ' + email;
+                    } 
+                    else {
+                       console.log("Error", xhr.statusText);
+                       document.getElementById('accesscode-msg').textContent = 'An error occured trying to email an Access Code to: ' + email;
+                    }
+                }
+            };
+            var formData = new FormData(document.getElementById("accessform")); 
+            xhr.send(formData);
+        }
+    }
+    
+    function getAccessCode() {
        //debugger;
        
        document.getElementById('accesscode-msg').textContent = '';
@@ -413,7 +443,6 @@
             return false;
        }
        document.getElementById('emailaccess').value = email;
-       document.getElementById('accesscode-msg').textContent = 'An Access Code was emailed to: ' + email;
        return true;
     }
     </script>

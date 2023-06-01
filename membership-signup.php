@@ -330,10 +330,20 @@ class ProcessRequest {
 
             // Email the message to users
             $notifyResult = $this->sendEmailMessage(null, $msg, $subject, $users, $gvm);
+            
+           if ($notifyResult == false) {
+              if ($log !== null) $log->error("ERROR trying to notify user with access code: $twofaKey");
 
-            if ($log !== null) $log->trace("Notified user with access code: ".print_r($notifyResult, true));
+              $errmsg = "Error attempting to send email to the email address [$member_email] check application logs.";
+              header("HTTP/1.1 500 Internal Server Error");
+              echo $errmsg;
+           }
+           else {
+             if ($log !== null) $log->trace("Notified user with access code: $twofaKey");
+             echo "Success sending email to the email address [$member_email]";
+           }        
 
-            exit();
+           exit();
         }
 
    	    $twofaKey = $this->request_variables['accesscode_textbox'];
