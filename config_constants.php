@@ -17,5 +17,6 @@ if ( defined('INCLUSION_PERMITTED') === false ||
 
 // ==============================================================
 
-define( 'DEBUG_MODE', 			false);
+define( 'DEBUG_MODE', false);
+define( 'LOG_LEVEL', 'WARNING');
 

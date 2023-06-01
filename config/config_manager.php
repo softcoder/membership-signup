@@ -39,8 +39,20 @@ class ConfigManager {
     public function __construct($sites=null,$default_config_file_path=null) {
         $this->sites = $sites;
         $this->default_config_file_path = $default_config_file_path;
+        
+        $this->setLogLevel();
     }
 
+    private function setLogLevel() {
+        global $log;
+        
+        if($log != null) {
+            $level = $this->getSystemConfigValue('LOG_LEVEL');
+            $handlers = $log->getHandlers();
+            $handlers[0]->setLevel($level);
+        }
+    }
+    
     public function setEnableCache($caching) {
         $this->enable_cache = $caching;
     }
