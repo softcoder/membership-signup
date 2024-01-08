@@ -198,7 +198,7 @@ class ProcessRequest {
        
        // Email the message to users
        $subject = $this->getFormEmailSubject($inputPDF);
-       $msg = $this->getFormEmailMsg($inputPDF);
+       $msg = $this->getFormEmailMsg($gvm,$inputPDF);
        
        $users = array();
        if($gvm->site->PDFSettings->EMAILPDF_TO_MEMBER) {
@@ -430,11 +430,12 @@ class ProcessRequest {
 		return $msg;
 	}
 
-	public function getFormEmailMsg($inputPDF) {
+	public function getFormEmailMsg($gvm, $inputPDF) {
 		global $log;
 
 		$view_template_vars = array();
 		$view_template_vars['pdf'] = basename($inputPDF);
+		$view_template_vars['membershipdirectors'] = $gvm->site->PDFSettings->EMAILPDF_TO_DIRECTORS;
 
 		$view_templates = array();
 		array_push($view_templates, '@custom/pdf-form-email-msg-'.basename($inputPDF).'-custom.twig.html');
