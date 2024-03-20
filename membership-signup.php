@@ -138,10 +138,13 @@ class ProcessRequest {
         $outputLocation = $gvm->site->PDFSettings->OUTPUTPATH;
         // Location of original PDF form
         $pdfLocation    = $gvm->site->PDFSettings->MEMBERSHIP_FILE;
+        // Location of original PDF form email view template
+        $pdfViewLocation    = $gvm->site->PDFSettings->MEMBERSHIP_FILE_EMAIL_VIEW_TEMPLATE;
         
         $iswaiver = getSafeRequestValue('waiver');
         if(isset($iswaiver)) {
           $pdfLocation = $gvm->site->PDFSettings->WAIVER_FILE;
+          $pdfViewLocation = $gvm->site->PDFSettings->WAIVER_FILE_EMAIL_VIEW_TEMPLATE;
         }
 
         $member_email = $this->getMemberEmail($gvm);
@@ -190,15 +193,15 @@ class ProcessRequest {
         if($gvm->site->PDFSettings->EMAILPDF_TO_MEMBER == true || 
            empty($gvm->site->PDFSettings->EMAILPDF_TO_DIRECTORS) == false) {
 
-            $this->emailPDFToUsers($gvm, $member_email, $pdfLocation, $outputPDF);
+            $this->emailPDFToUsers($gvm, $member_email, $pdfLocation, $pdfViewLocation, $outputPDF);
         }
 	}
 
-    private function emailPDFToUsers($gvm, $member_email, $inputPDF, $outputPDF) {
+    private function emailPDFToUsers($gvm, $member_email, $inputPDF, $inputPDFView, $outputPDF) {
        
        // Email the message to users
-       $subject = $this->getFormEmailSubject($inputPDF);
-       $msg = $this->getFormEmailMsg($gvm,$inputPDF);
+       $subject = $this->getFormEmailSubject($inputPDF, $inputPDFView);
+       $msg = $this->getFormEmailMsg($gvm,$inputPDF, $inputPDFView);
        
        $users = array();
        if($gvm->site->PDFSettings->EMAILPDF_TO_MEMBER) {
@@ -410,15 +413,15 @@ class ProcessRequest {
 		return $msg;
 	}
 
-	public function getFormEmailSubject($inputPDF) {
+	public function getFormEmailSubject($inputPDF, $inputPDFView) {
 		global $log;
 
 		$view_template_vars = array();
 		$view_template_vars['pdf'] = basename($inputPDF);
 
 		$view_templates = array();
-		array_push($view_templates, '@custom/pdf-form-email-subject-msg-'.basename($inputPDF).'-custom.twig.html');
-		array_push($view_templates, 'pdf-form-email-subject-msg-'.basename($inputPDF).'.twig.html');
+		array_push($view_templates, '@custom/pdf-form-email-subject-msg-'.basename($inputPDFView).'-custom.twig.html');
+		array_push($view_templates, 'pdf-form-email-subject-msg-'.basename($inputPDFView).'.twig.html');
 		
 		// Load our template
 		$template = $this->getTwigEnv()->resolveTemplate($view_templates);
@@ -430,7 +433,7 @@ class ProcessRequest {
 		return $msg;
 	}
 
-	public function getFormEmailMsg($gvm, $inputPDF) {
+	public function getFormEmailMsg($gvm, $inputPDF, $inputPDFView) {
 		global $log;
 
 		$view_template_vars = array();
@@ -438,8 +441,8 @@ class ProcessRequest {
 		$view_template_vars['membershipdirectors'] = $gvm->site->PDFSettings->EMAILPDF_TO_DIRECTORS;
 
 		$view_templates = array();
-		array_push($view_templates, '@custom/pdf-form-email-msg-'.basename($inputPDF).'-custom.twig.html');
-		array_push($view_templates, 'pdf-form-email-msg-'.basename($inputPDF).'.twig.html');
+		array_push($view_templates, '@custom/pdf-form-email-msg-'.basename($inputPDFView).'-custom.twig.html');
+		array_push($view_templates, 'pdf-form-email-msg-'.basename($inputPDFView).'.twig.html');
 		
 		// Load our template
 		$template = $this->getTwigEnv()->resolveTemplate($view_templates);

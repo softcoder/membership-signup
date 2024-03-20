@@ -205,9 +205,16 @@ class PDFSettings
 	public $EMAILPDF_TO_MEMBER;
 	// The list of directors to email the filled out forms
 	public $EMAILPDF_TO_DIRECTORS;
+	// The date range that the forms are active
+	public $FORMS_DATE_RANGE;
+	// The membership email template view
+	public $MEMBERSHIP_FILE_EMAIL_VIEW_TEMPLATE;
+	// The waiver email template view
+	public $WAIVER_FILE_EMAIL_VIEW_TEMPLATE;
 	
 	public function __construct($enabled=false, $outputpath=null, $membership_file=null, $waiver_file=null,
-			$webform_emailfield=null, $pdftk_path=null, $emailpdf_to_member=null, $emailpdf_to_directors=null) {
+			$webform_emailfield=null, $pdftk_path=null, $emailpdf_to_member=null, $emailpdf_to_directors=null,
+			$forms_date_range=null, $membership_file_email_view_template=null, $waiver_file_email_view_template=null) {
 		
 		$this->ENABLED = $enabled;
 		$this->OUTPUTPATH = $outputpath;
@@ -217,6 +224,9 @@ class PDFSettings
 		$this->PDFTK_PATH = $pdftk_path;
 		$this->EMAILPDF_TO_MEMBER = $emailpdf_to_member;
 		$this->EMAILPDF_TO_DIRECTORS = $emailpdf_to_directors;
+		$this->FORMS_DATE_RANGE = $forms_date_range;
+		$this->MEMBERSHIP_FILE_EMAIL_VIEW_TEMPLATE = $membership_file_email_view_template;
+		$this->WAIVER_FILE_EMAIL_VIEW_TEMPLATE = $waiver_file_email_view_template;
 	}
 
 	public function __toString() {
@@ -231,7 +241,10 @@ class PDFSettings
 				"\nwebform email field: " . $this->WEBFORM_EMAILFIELD .
 				"\nPDFTK path: " . $this->PDFTK_PATH .
 				"\nemail pdf to member: " . var_export($this->EMAILPDF_TO_MEMBER, true) .
-				"\nemail pdf to directors: " . $this->EMAILPDF_TO_DIRECTORS;
+				"\nemail pdf to directors: " . $this->EMAILPDF_TO_DIRECTORS .
+				"\npdf forms active date range: " . $this->FORMS_DATE_RANGE.
+        		"\nmembership file email view template: " . $this->MEMBERSHIP_FILE_EMAIL_VIEW_TEMPLATE .
+        		"\nwaiver file email view template: " . $this->WAIVER_FILE_EMAIL_VIEW_TEMPLATE;
 		return $result;
 	}
 	
@@ -258,6 +271,16 @@ class PDFSettings
 	}
 	public function setEmailPDFToDirectors($value) {
 		$this->EMAILPDF_TO_DIRECTORS = $value;
+	}
+	public function setFormsDateRange($value) {
+		$this->FORMS_DATE_RANGE = $value;
+	}
+
+	public function setMembershipfileEmailViewTemplate($value) {
+		$this->MEMBERSHIP_FILE_EMAIL_VIEW_TEMPLATE = $value;
+	}
+	public function setWaiverfileEmailViewTemplate($value) {
+		$this->WAIVER_FILE_EMAIL_VIEW_TEMPLATE = $value;
 	}
 	
 }

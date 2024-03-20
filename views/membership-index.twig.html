@@ -15,7 +15,7 @@
                     <td>
                     	<h1>Caledonia Ramblers Hiking Club Membership</h1>
                     	<br>
-                    	<h1>May 1, 2023 - April 30, 2024</h1>
+                    	<h1>{{ gvm.site.PDFSettings.FORMS_DATE_RANGE }}</h1>
                     	<a href="https://youtu.be/9h9KxNLpCGI">Video Instruction</a>
                    	</td>
 	            	<td style="text-align:right">
@@ -44,13 +44,13 @@
 	              </tr>
 	              <tr>
 	                <td>
-	                    <a href="{{ gvm.RR_DOC_ROOT }}/forms/MembershipForm2023-2024.pdf">Membership Form</a>
+	                    <a href="{{ gvm.RR_DOC_ROOT }}/{{ gvm.site.PDFSettings.MEMBERSHIP_FILE }}">Membership Form</a>
 	                </td>
 	              </tr>
 	              <tr>
 	                <td>
 	                    This form MUST be printed in colour, black and white will not be accepted:  
-	                    <a href="{{ gvm.RR_DOC_ROOT }}/forms/Printable-FMCBC-Universal-WaiverBasic-2022.pdf">Waiver Form</a>
+	                    <a href="{{ gvm.RR_DOC_ROOT }}/{{ gvm.site.PDFSettings.WAIVER_FILE }}">Waiver Form</a>
 	                </td>
 	              </tr>
 	              

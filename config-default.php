@@ -53,11 +53,14 @@ require_once 'config/config_manager.php';
     $PDF->setEnabled(true);
 	$PDF->setOutputPath('output/');
 	$PDF->setMembershipfile('forms/MembershipForm2023-2024.pdf');
+	$PDF->setMembershipfileEmailViewTemplate('MembershipForm.pdf');
 	$PDF->setWaiverfile('forms/E-waiver-FMCBC-Universal-Waiver-Basic-2022.pdf');
+	$PDF->setWaiverfileEmailViewTemplate('E-waiver-FMCBC-Universal-Waiver-Basic.pdf');
 	$PDF->setWebformEmailField('emailaddress');
 	$PDF->setPDFTKPath('');
 	$PDF->setEmailPDFToMember(true);
 	//$PDF->setEmailPDFToDirectors('somedirector@gmail.com');
+	$PDF->setFormsDateRange('May 1, 2024 - April 30, 2025');
 
 	// ----------------------------------------------------------------------
 	// Main TwoFactor Configuration Container Settings
