@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Secure Signup: Caledonia Ramblers Membership Waiver</title>
+		<link rel="stylesheet" href="{{ gvm.RR_DOC_ROOT }}/styles/main.css" />
+    </head>
+    <body>
+    
+    	<div class="container_center">
+    	
+		<div class="container">
+			<section id="content">
+	        <form action="{{ gvm.RR_DOC_ROOT }}/membership-signup-process.php?waiver=true" method="post" 
+	               accept-charset="utf-8" id="login_form" name="login_form">
+	            
+	            <table>
+	              <tr>
+                    <td>
+                    	<h1><label style="color:red">Caledonia Ramblers Hiking Club</label></h1>
+                    	<br>
+                    	<h3>Name of FMCBC Member Club</h3>
+                   	</td>
+	            	<td style="text-align:right">
+	            	{% include 'display-fmbc-logo.twig.html' %}
+	            	</td>
+	              </tr>
+                </table>
+				
+	        	<div>
+	 					
+  				    <table border="2">
+					  <tr>
+   					    <td style="text-align:center" colspan="3" border="4" bgcolor="yellow">
+     					  <h1>RELEASE OF LIABILITY, WAIVER OF CLAIMS,<br>
+     					  ASSUMPTION OF RISKS AND INDEMNITY AGREEMENT</h1>
+     					  <h4>(hereinafter the “Release Agreement”)<br></h4>
+     					  <h1>BY SIGNING THIS DOCUMENT, YOU WILL WAIVE OR GIVE UP CERTAIN LEGAL<br>
+     					  RIGHTS, INCLUDING THE RIGHT TO SUE FOR NEGLIGENCE, BREACH OF<br>
+     					  CONTRACT OR BREACH OF THE OCCUPIERS LIABILITY ACT OR<br>
+     					  CLAIM COMPENSATION FOLLOWING AN ACCIDENT<br>
+     					  </h1>
+     					  <table>
+     					    <tr>
+     					        <td>
+             					  <h1>PLEASE READ CAREFULLY!<br></h1>
+             					  <h1>THIS RELEASE AGREEMENT SHALL APPLY TO ALL<br>
+             					  FUTURE PARTICIPATION IN OUTDOOR ACTIVITIES<br></h1>
+            					</td>
+            					<td>
+            					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            					</td>
+            					<td bgcolor="white"> 
+                                  <input type="checkbox" name="firstsignatureack_checkbox" id="firstsignatureack_checkbox" 
+	                        	         placeholder="signature acknowledge" required />
+	                        	  <br>
+	                        	  <input type="text" name="Signature2_es_:signer:signature_textbox" id="Signature2_es_:signer:signature_textbox" 
+	                        	         placeholder="signature" required 
+	                        		     onKeyPress="enterMovesFocus(this,event,document.getElementById('Signature2_es_:signer:signature_textbox'))"/>
+                       	          <br>
+                       	          <label for="firstsignature_checkbox"><u>SIGNATURE OF PARTICIPANT/MEMBER</u></label>
+                       	          
+                       	          <br>
+              	            	  <label for="emailaddress_textbox">Email:</label>
+	                        	  <input type="text" name="emailaddress_textbox" id="emailaddress_textbox" size="40"
+	                        	         placeholder="email" required 
+	                        		     onKeyPress="enterMovesFocus(this,event,document.getElementById('emailaddress_textbox'))"/>
+                       	          
+            					</td>
+        					</tr>
+     					  </table>
+   					    </td>
+  				      </tr>
+					  <tr>
+   					    <td style="text-align:left">
+                          <h2>
+      	            	  To: <label style="color:red">Caledonia Ramblers Hiking Club</label> (the “Club”), Federation of Mountain Clubs of BC,
+      	            	  and their respective directors, officers, employees, members, volunteers, agents, independent contractors
+      	            	  and subcontractors, representatives, successors, assigns and all persons acting under their authority (all of
+      	            	  whom are hereinafter collectively referred to as “the Releasees”)<br>
+                          </h2> 
+                        </td>
+                      </tr>
+					  <tr>
+   					    <td style="text-align:left">
+   					      <br>
+                          <h1>DEFINITION</h1>
+                        </td>
+                      </tr>
+					  <tr>
+   					    <td style="text-align:left">
+                          <h2>
+                          In this Release Agreement the term <label style="color:red">“Outdoor Activities”</label> shall include but is not limited to: mountaineering (including, glacier
+                          travel; rock, snow, ice and mixed; roped and un-roped), climbing (including indoor, rock, ice, alpine, bouldering, sport and
+                          mountain); backpacking, hiking, trail running, trekking; swimming; backcountry skiing, touring, telemark skiing, snowboarding and
+                          snowshoeing; alpine skiing, Nordic or cross-country skiing; cycling, mountain biking; trail building, clearing and maintenance;
+                          building, maintaining and operating backcountry huts; and, all activities, services and use of facilities either provided by or arranged
+                          by the Releasees including orientation, instructional sessions or classes, skill development programs and all transportation, travel
+                          by or movement around helicopters, other aircraft or other vehicles or watercraft; and, all other activities and services in any way
+                          connected with or related to Outdoor Activities.
+                          </h2>
+                        </td>
+                      </tr>
+					  <tr>
+   					    <td style="text-align:left">
+    					  <br>
+                          <h1>ASSUMPTION OF RISKS – TERRAIN, WILDERNESS TRAVEL, WEATHER</h1>
+                        </td>
+                      </tr>
+					  <tr>
+   					    <td style="text-align:left">
+                          <h2>
+                          I am aware that participation in Outdoor Activities involves many risks, dangers and hazards. The terrain used for Outdoor Activities 
+                          is uncontrolled, unmarked, ungroomed, not inspected, and involves many risks, dangers and hazards. Avalanches, rock, snow or 
+                          ice falls and mudslides occur frequently in the terrain used for Outdoor Activities and may be caused by natural forces or by persons 
+                          travelling through the terrain. I am aware that the Releasees may fail to predict whether the terrain or current weather conditions are 
+                          safe for use or travel, and whether avalanche hazards or other dangers or risks may occur. The risks, dangers and hazards may 
+                          include but are not limited to: rockfall, icefall, mudslides, avalanches of snow, ice and rock triggered by natural forces, by persons 
+                          travelling through the terrain or other causes; extreme variations in terrain, including hidden or exposed rocks, boulders, ice, logs, 
+                          stumps, roots, forest deadfall, tree wells, trees and other objects; falling trees; forest fires; concealed or exposed crevasses, ice 
+                          bridges or bergschrunds; cornices and cornice falls; cliffs; variable and difficult snow or ice conditions, including unstable snow 
+                          packs or ice; exposed or concealed holes or depressions on or below the surface or ground cover; still and moving water; lakes, 
+                          streams, creeks and rivers, including crossings; cold water immersion; entrapment by trees, logs, rocks or equipment; drowning; 
+                          limited visibility; variable, severe or rapidly changing weather with little or no warning including storms, high winds and lightning; 
+                          hypothermia; snow immersion; frostbite; effects of high altitude, including pulmonary edema and cerebral edema; loss of balance or 
+                          control and slips, trips or falls, particularly on steep, slippery or difficult terrain and impacts or collisions with other persons, animals, 
+                          equipment or objects; difficulty or inability to control one’s speed and direction; errors of judgment; lack of preparation; inadequate, 
+                          inappropriate, improperly prepared or adjusted equipment; equipment failure, malfunction or loss; loss or damage to personal 
+                          property; failure to act safely or within one’s ability; encounters with domestic or wild animals; becoming lost, going off route or 
+                          becoming separated from one’s party; negligent first aid; dangerous driving conditions and travel over poor roads; contracting Lyme 
+                          disease or infectious diseases through viruses, including Covid-19, bacteria, parasites, and fungi which may be transmitted through 
+                          direct or indirect contact; negligence of other persons, including club members, guests and participants or members of the public; 
+                          and, <label style="color:red">NEGLIGENCE ON THE PART OF THE RELEASEES. I UNDERSTAND THAT NEGLIGENCE INCLUDES FAILURE BY THE 
+                          RELEASEES TO TAKE REASONABLE STEPS TO SAFEGUARD OR PROTECT ME FROM OR WARN ME OF THE RISKS, 
+                          DANGERS AND HAZARDS OF PARTICIPATING IN OUTDOOR ACTIVITIES.</label> Communication in wilderness areas may be difficult, 
+                          and in the event of an accident or illness, rescue, medical treatment and evacuation may not be available or may be delayed. 
+                          Mountain weather conditions may be extreme and can change rapidly and without warning.
+                          </h2>
+                        </td>
+                      </tr>
+					  <tr>
+   					    <td style="text-align:left">
+     					  <table>
+     					    <tr>
+            					<td style="background-color:cyan;width:50px;text-align:center"> 
+                                  <input type="checkbox" name="secondsignatureack_checkbox" id="secondsignatureack_checkbox" 
+	                        	         placeholder="signature acknowledge" required />
+            					</td>
+            					<td>
+            					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            					</td>
+     					        <td>
+             					  <h2>
+             					  I AM AWARE OF THE RISKS, DANGERS AND HAZARDS ASSOCIATED WITH OUTDOOR ACTIVITIES
+             					  AND I FREELY ACCEPT AND FULLY ASSUME ALL SUCH RISKS, DANGERS AND HAZARDS AND THE POSSIBILITY
+             					  OF PERSONAL INJURY, ILLNESS, DEATH, PROPERTY DAMAGE AND LOSS RESULTING THEREFROM.
+             					  </h2>
+            					</td>
+        					</tr>
+     					  </table>
+                        </td>                      
+                      </tr>
+					  <tr>
+   					    <td style="text-align:left">
+   					      <br>
+                          <h1>NON-SCHEDULED OR EMERGENCY EVACUATION, RESCUE OR FIRST AID</h1>
+                        </td>                      
+                      </tr>
+					  <tr>
+   					    <td style="text-align:left">
+    					  <h2>
+                            I acknowledge and agree that all expenses associated with non-scheduled or emergency evacuation, rescue or first aid will be my
+                            responsibility and will not be covered by the Releasees.
+                          </h2>  
+                        </td>                      
+                      </tr>
+					  <tr>
+   					    <td style="text-align:center">
+   					     <br>
+                         Federation of Mountain Clubs of BC - Universal Waiver- Basic – November 11, 2021 - Page 1 of 2
+                        </td>                      
+                      </tr>
+                      
+					  <tr>
+   					    <td style="text-align:left">
+
+                            <table style="width: 100%">
+                              <tr>
+                                <td style="text-align:left">
+                                  <br>
+                                  <h1>DISCLOSURE OF RESPONSIBILITIES</h1>
+                                </td>
+	                           	<td style="text-align:right">
+	                            	{% include 'display-fmbc-logo.twig.html' %}
+	                           	</td>
+                           	  </tr>
+                            </table>
+                          
+                        </td>
+                      </tr>
+					  <tr>
+   					    <td style="text-align:left">
+    					  <h2>
+                            All activities and programs offered by the Releasees which involve Outdoor Activities are entirely self-guided. The directors, officers, 
+                            employees, members, volunteers, organizers, agents, representatives, coordinators and all persons acting under the authority of the 
+                            Releasees are neither professional guides nor trained first aid attendants. All are volunteers and may have no formal training in the 
+                            skills and knowledge required for the Outdoor Activities. The Releasees are not in any way responsible for travel to or from 
+                            locations, including transport by public or private motor vehicles. Releasees are not in any way responsible or liable for driver 
+                            negligence, conduct or safety, or for insurance of vehicles, even if the vehicle belongs to or is driven by the Releasees. <label style="color:red">Participants 
+                            are responsible for their own medical insurance, accident and disability insurance.</label>
+                          </h2>
+                        </td>                      
+                      </tr>
+					  <tr>
+   					    <td style="text-align:left">
+     					  <table>
+     					    <tr>
+            					<td style="background-color:cyan;width:50px;text-align:center"> 
+                                  <input type="checkbox" name="thirdsignatureack_checkbox" id="thirdsignatureack_checkbox" 
+	                        	         placeholder="signature acknowledge" required />
+            					</td>
+            					<td>
+            					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            					</td>
+     					        <td>
+             					  <h2>
+             					  I have read and I understand the Disclosure of Responsibilities. I agree that I am responsible for my
+             					  own medical insurance, accident and disability insurance. I further agree that I am responsible for non-scheduled or
+             					  emergency evacuation not the Releasees.
+             					  </h2>
+            					</td>
+        					</tr>
+     					  </table>
+                        </td>                      
+                      </tr>
+					  <tr>
+   					    <td style="text-align:left">
+   					      <br>
+                          <h1>RELEASE OF LIABILITY, WAIVER OF CLAIMS AND INDEMNITY AGREEMENT</h1>
+                        </td>                      
+                      </tr>
+					  <tr>
+   					    <td style="text-align:left">
+    					  <h2>
+                            In consideration of the Releasees allowing me to join the Club, to use Club cabins, and/or to participate in activities, programs or 
+                            meetings organized or authorized by or on behalf of the Releasees including, but not limited to Club trips, camps, expeditions, 
+                            courses or programs involving Outdoor Activities, and for other good and valuable consideration, the receipt and sufficiency of which 
+                            is acknowledged, <label style="color:red">I hereby agree as follows:</label>
+                          </h2>  
+                        </td>                      
+                      </tr>
+       				  <tr>
+   					    <td style="text-align:center" colspan="3" border="4" bgcolor="yellow">
+     					  <h2>
+     					  <label style="color:red">1. TO WAIVE ANY AND ALL CLAIMS</label> that I have or may have in the future against the Releasees and <label style="color:red">TO
+     					  RELEASE THE RELEASEES</label> from any and all liability for any loss, damage, expense, illness or injury including
+    					  death that I may suffer, or that my next of kin may suffer, resulting from or in connection with my membership in the
+    					  Club, my use of Club cabins or my participation in Outdoor Activities or any activities, programs or meetings
+    					  organized or authorized by or on behalf of the Releasees, including, but not limited to Club trips, camps,
+    					  expeditions, courses or programs involving Outdoor Activities <label style="color:red">DUE TO ANY CAUSE WHATSOEVER, INCLUDING
+    					  NEGLIGENCE, BREACH OF CONTRACT, OR BREACH OF ANY STATUTORY OR OTHER DUTY OF CARE, INCLUDING ANY DUTY OF CARE
+    					  OWED UNDER THE OCCUPIERS LIABILITY ACT, R.S.B.C. 1996, c. 337,
+    					  OR ANY APPLICABLE OCCUPIERS LIABILITY LEGISLATION, ON THE PART OF THE RELEASEES. I
+    					  UNDERSTAND NEGLIGENCE INCLUDES FAILURE ON THE PART OF THE RELEASEES TO TAKE
+    					  REASONABLE STEPS TO SAFEGUARD OR PROTECT ME FROM OR WARN ME OF THE RISKS, DANGERS
+    					  AND HAZARDS OF PARTICIPATING IN OUTDOOR ACTIVITIES.</label>
+     					  </h2>
+   					    </td>
+  				      </tr>
+					  <tr>
+   					    <td style="text-align:left">
+    					  <h2>
+                            2. TO HOLD HARMLESS AND INDEMNIFY the Releasees from any and all liability for any property damage or personal injury to
+                            any third party, resulting from my participation in Outdoor Activities or any aspect of my membership in the Club, my use of
+                            Club cabins or my participation in any activities, programs, or meetings organized or authorized by or on behalf of the
+                            Releasees, including but not limited to Club trips, camps, expeditions, courses or programs involving Outdoor Activities.
+                          </h2>  
+                        </td>                      
+                      </tr>
+					  <tr>
+   					    <td style="text-align:left">
+    					  <h2>
+                            3. This Release Agreement shall be effective and binding upon my heirs, next of kin, executors, administrators, assigns and
+                            representatives, in the event of my death or incapacity;
+                          </h2>  
+                        </td>                      
+                      </tr>
+					  <tr>
+   					    <td style="text-align:left">
+    					  <h2>
+                            4. This Release Agreement and any rights, duties and obligations as between the parties to this Release Agreement shall
+                            be governed by and interpreted solely in accordance with the laws of British Columbia and no other jurisdictions; and
+                          </h2>  
+                        </td>                      
+                      </tr>
+					  <tr>
+   					    <td style="text-align:left">
+    					  <h2>
+                            5. Any litigation involving the parties of this Release Agreement shall be brought solely within British Columbia and shall be within
+                            the exclusive jurisdiction of the Courts of British Columbia.
+                          </h2>  
+                        </td>                      
+                      </tr>
+					  <tr>
+   					    <td style="text-align:left">
+    					  <h2>
+                            Unless the executive of the Club directs otherwise, this Release Agreement shall apply to all future membership renewals, use of Club cabins, participation in Outdoor Activities or participation in activities, programs or meetings organized or authorized by or on behalf of the Releasees including but not limited to Club trips, camps, expeditions, courses or programs involving Outdoor Activities.
+                          </h2>  
+                        </td>                      
+                      </tr>
+					  <tr>
+   					    <td style="text-align:left">
+    					  <h2>
+                            In entering into this Release Agreement, I am not relying upon any oral or written representations or statements made by the Releasees with respect to the safety of participating in Outdoor Activities, Club cabins and any activities, programs, or meetings organized or authorized by or on behalf of the Releasees, other than what is set forth in this Release Agreement.
+                          </h2>  
+                        </td>                      
+                      </tr>
+               
+               
+       	              <tr>
+   					    <td style="text-align:left">
+   					      <br>
+     					  <table>
+     					    <tr>
+            					<td style="background-color:cyan;width:50px;text-align:center"> 
+                                  <input type="checkbox" name="fourthsignatureack_checkbox" id="fourthsignatureack_checkbox" 
+	                        	         placeholder="signature acknowledge" required />
+            					</td>
+            					<td>
+            					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            					</td>
+     					        <td>
+             					  <h2>
+             					  <label style="color:red">I CONFIRM THAT I HAVE READ AND UNDERSTAND THIS RELEASE AGREEMENT AND I AM AWARE
+             					  THAT BY SIGNING THIS RELEASE AGREEMENT I AM WAIVING CERTAIN LEGAL RIGHTS WHICH I OR MY HEIRS,
+             					  NEXT OF KIN, EXECUTORS, ADMINISTRATORS, ASSIGNS AND REPRESENTATIVES MAY HAVE AGAINST THE
+             					  RELEASEES. I ACKNOWLEDGE THAT THIS RELEASE AGREEMENT SHALL APPLY TO ALL FUTURE
+             					  PARTICIPATION IN OUTDOOR ACTIVITIES.</label>
+             					  </h2>
+            					</td>
+        					</tr>
+     					  </table>
+                        </td>                      
+                      </tr>        
+       				  <tr>
+   					    <td style="text-align:center">
+   					     <br>
+                         Federation of Mountain Clubs of BC - Universal Waiver- Basic – November 11, 2021 - Page 2 of 2
+                        </td>                      
+                      </tr>
+               
+           		    </table>
+                    
+	            </div>
+		
+		        {% if gvm.site.TWOFACTOR.ENABLED %}
+                <div style="text-align:left">
+                  <table>
+                    <tr>
+                        <td>
+                    	  <label for="accesscode_textbox">Access Code:</label>
+                    	  <input type="text" name="accesscode_textbox" id="accesscode_textbox" 
+                    	         placeholder="access code" required
+                    		     onKeyPress="enterMovesFocus(this,event,document.getElementById('accesscode_textbox'))"/>
+                    	</td>     
+                    	<td>
+                    	  <input type="button" id="btnAccessCode" value="Email a code" form="accessform" onclick="javascript:getAccessCodeAsynch()"/>
+                        </td>
+	                </tr>
+                    <tr>
+                        <td colspan=2 style="text-align:center">
+                    	  <span id="accesscode-msg" name="accesscode-msg" style="color:red"></span>
+                        </td>
+	                </tr>
+       		      <table>
+       		    </div>
+       		    {% endif %}
+
+				<div >
+	            	<input type="submit" id="btnLogin" 
+	                		value="Submit" />
+	            </div>	
+				
+	        </form>
+	        
+        	<form action="{{ gvm.RR_DOC_ROOT }}/membership-signup-process.php?accesscode" method="post" 
+                    accept-charset="utf-8" id="accessform" name="accessform" target="access-form" 
+                    onsubmit="return getAccessCode()">
+              
+              <input type="hidden" id="emailaccess" name="emailaccess" />
+                
+            </form>
+            <iframe style="display:none" name="access-form" id="access-form"></iframe>
+	        
+			</section>
+			</div>
+	
+
+        </div>
+    </body>
+    
+    <script type="text/JavaScript">
+    
+    function getAccessCodeAsynch() {
+        //debugger;
+        
+        if(getAccessCode() == true) {
+            var emailctl = document.getElementById('emailaddress_textbox');
+            var email = emailctl.value;
+        
+            var xhr = new XMLHttpRequest() 
+            xhr.open("POST", "{{ gvm.RR_DOC_ROOT }}/membership-signup-process.php?accesscode"); 
+            xhr.onreadystatechange = function (oEvent) {
+                //debugger;
+                
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                      console.log(xhr.responseText)
+                      document.getElementById('accesscode-msg').textContent = 'An Access Code was emailed to: ' + email;
+                    } 
+                    else {
+                       console.log("Error", xhr.statusText);
+                       document.getElementById('accesscode-msg').textContent = 'An error occured trying to email an Access Code to: ' + email;
+                    }
+                }
+            };
+            var formData = new FormData(document.getElementById("accessform")); 
+            xhr.send(formData);
+        }
+    }
+    
+    function getAccessCode() {
+       //debugger;
+       
+       document.getElementById('accesscode-msg').textContent = '';
+       document.getElementById('emailaccess').value = '';
+       
+       var emailctl = document.getElementById('emailaddress_textbox');
+       var email = emailctl.value;
+       if(email == '') {
+            document.getElementById('accesscode-msg').value = 'please enter a valid email address!';
+            emailctl.focus();
+            return false;
+       }
+       document.getElementById('emailaccess').value = email;
+       return true;
+    }
+    </script>
+    
+</html>

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Secure Signup: Caledonia Ramblers Membership</title>
+		<link rel="stylesheet" href="{{ gvm.RR_DOC_ROOT }}/styles/main.css" />
+    </head>
+    <body>
+    
+    	<div class="container_center">
+    	
+		<div class="container">
+			<section id="content">
+	        <form action="{{ gvm.RR_DOC_ROOT }}/membership-signup-process.php" method="post" 
+	               accept-charset="utf-8" id="login_form" name="login_form">
+	            
+	            <table>
+	              <tr>
+                    <td>
+                    	<h1>Caledonia Ramblers Hiking Club Membership</h1>
+                    	<br>
+                    	<h1>Form: {{ gvm.site.PDFSettings.FORMS_DATE_RANGE }}</h1>
+                   	</td>
+	            	<td style="text-align:right">
+	            	{% include 'display-logo.twig.html' %}
+	            	</td>
+	              </tr>
+                </table>
+				
+	        	<div>
+	 					
+  				    <table border="2">
+					  <tr>
+   					    <td style="text-align:left" colspan="3">
+     					  <h2>PERSONAL INFORMATION</h2><br>  
+   					    </td>
+  				      </tr>
+					  <tr>
+   					    <td style="text-align:left">
+
+      	            	  <label for="lastname_textbox">Last Name:</label>
+	                	  <input type="text" name="lastname_textbox" id="lastname_textbox" 
+	                	         placeholder="last name" required 
+	                		     onKeyPress="enterMovesFocus(this,event,document.getElementById('lastname_textbox'))"/>
+
+                        </td>
+                        <td style="text-align:left">
+                        
+      	            	  <label for="firstname_textbox">First Name:</label>
+	                	  <input type="text" name="firstname_textbox" id="firstname_textbox" 
+	                	         placeholder="first name" required 
+	                		     onKeyPress="enterMovesFocus(this,event,document.getElementById('firstname_textbox'))"/>
+
+                        </td>
+                        <td style="text-align:left">
+                        
+      	            	  <label for="emergencyphone_textbox">Telephone:</label>
+	                	  <input type="text" name="emergencyphone_textbox" id="emergencyphone_textbox" size="15"
+	                	         placeholder="phone number" required 
+	                		     onKeyPress="enterMovesFocus(this,event,document.getElementById('emergencyphone_textbox'))"/>
+	                		     
+	            		</td>
+                      </tr>
+             		  <tr>
+   					    <td style="text-align:left">
+      	            	  <label for="address_textbox">Mailing Address:</label>
+	                	  <input type="text" name="address_textbox" id="address_textbox" size="40"
+	                	         placeholder="address" required 
+	                		     onKeyPress="enterMovesFocus(this,event,document.getElementById('address_textbox'))"/>
+	            		</td>
+	            		<td style="text-align:left">
+      	            	  <label for="city_textbox">City:</label>
+	                	  <input type="text" name="city_textbox" id="city_textbox" 
+	                	         placeholder="city" required 
+	                		     onKeyPress="enterMovesFocus(this,event,document.getElementById('city_textbox'))"/>
+	            		</td>
+	            		<td style="text-align:left">
+      	            	  <label for="province_textbox">Province:</label>
+	                	  <input type="text" name="province_textbox" id="province_textbox" size="5" 
+	                	         placeholder="province" required 
+	                		     onKeyPress="enterMovesFocus(this,event,document.getElementById('province_textbox'))"/>
+
+	            		</td>
+                      </tr>
+                      </tr>
+             		  <tr>
+   					    <td style="text-align:left">
+      	            	  <label for="postalcode_textbox">Postal Code:</label>
+	                	  <input type="text" name="postalcode_textbox" id="postalcode_textbox" size="7"
+	                	         placeholder="postal code" required 
+	                		     onKeyPress="enterMovesFocus(this,event,document.getElementById('postalcode_textbox'))"/>
+	            		</td>
+   					    <td style="text-align:left">
+      	            	  <label for="emailaddress_textbox">Email:</label>
+	                	  <input type="text" name="emailaddress_textbox" id="emailaddress_textbox" size="30"
+	                	         placeholder="email" required 
+	                		     onKeyPress="enterMovesFocus(this,event,document.getElementById('emailaddress_textbox'))"/>
+	            		</td>
+   					    <td style="text-align:left">
+                          <label for="noemail_checkbox">I do not have an email address:</label>
+                          <input type="checkbox" name="noemail_checkbox" id="noemail_checkbox" 
+	                	         placeholder="email status" />
+	            		</td>
+                      </tr>
+             		  <tr>
+   					    <td style="text-align:left" colspan="2">
+      	            	  <label for="emergencyname_textbox">Emergency Contact Name:</label>
+	                	  <input type="text" name="emergencyname_textbox" id="emergencyname_textbox" size="40"
+	                	         placeholder="emergency contact name"  
+	                		     onKeyPress="enterMovesFocus(this,event,document.getElementById('emergencyname_textbox'))"/>
+	            		</td>
+   					    <td style="text-align:left">
+      	            	  <label for="emergencyphone_2_textbox">Contact Phone:</label>
+	                	  <input type="text" name="emergencyphone_2_textbox" id="emergencyphone_2_textbox" size="15"
+	                	         placeholder="phone"  
+	                		     onKeyPress="enterMovesFocus(this,event,document.getElementById('emergencyphone_2_textbox'))"/>
+   					    
+	            		</td>
+                      </tr>
+             		  <tr>
+   					    <td style="text-align:left" colspan="3">
+                          <label for="yesemailnewsletter_checkbox">I wish to receive the email Newsletter with notifications of hikes and other club activities:</label>
+                          <input type="checkbox" name="yesemailnewsletter_checkbox" id="yesemailnewsletter_checkbox"/>
+	            		</td>
+                      </tr>
+             		  <tr>
+   					    <td style="text-align:left" colspan="2">
+                          <label for="nonewsletter_checkbox">Do <b>NOT</b> add me to the Newsletter distribution list:</label>
+                          <input type="checkbox" name="nonewsletter_checkbox" id="nonewsletter_checkbox"/>
+	            		</td>
+   					    <td style="text-align:left" colspan="1">
+                          <label for="nonewsletter_checkbox">Do <b>NOT</b> add me to the members contact list:</label>
+                          <input type="checkbox" name="nomemberslist_checkbox" id="nomemberslist_checkbox"/>
+	            		</td>
+	            		
+                      </tr>
+                      <tr>
+                        <td style="text-align:left" colspan="3">
+                           <br>
+                           <hr>
+                           <br>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="text-align:left" colspan="3">
+                          <h2>MEMBERSHIP DUES</h2><br>    
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="text-align:left" colspan="3">
+                          <label><b>$35.00</b> for first member</label>  
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="text-align:left" colspan="3">
+                          <label>Federation of Mountain Clubs of BC (FMCBC) membership included ($8.00 value)</label>
+                          <label><b>$35.00</b></label>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="text-align:left" colspan="3">
+                          <label>Each <b>additional family member</b> participating in club functions or activities must also pay <b>$12.00 for liability insurance.</b> (Partner/children/sibling must live at the same address.)</label>                        
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="text-align:left">
+                          <label for="familymembername1_textbox">Additional family members:</label>
+                        </td>
+                        <td style="text-align:left">
+  	                	  <input type="text" name="familymembername1_textbox" id="familymembername1_textbox" size="40" 
+	                	         placeholder="family member name"  
+	                		     onKeyPress="enterMovesFocus(this,event,document.getElementById('familymembername1_textbox'))"/>
+                        </td>
+                        <td style="text-align:left">
+      	            	  <label for="familymemberpay1_textbox">$</label>
+	                	  <input type="text" name="familymemberpay1_textbox" id="familymemberpay1_textbox" 
+	                	         placeholder="family member cost"  
+	                		     onKeyPress="enterMovesFocus(this,event,document.getElementById('familymemberpay1_textbox'))"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                        </td>
+                        <td style="text-align:left">
+	                	  <input type="text" name="familymembername2_textbox" id="familymembername2_textbox" size="40"  
+	                	         placeholder="family member name"  
+	                		     onKeyPress="enterMovesFocus(this,event,document.getElementById('familymembername2_textbox'))"/>
+                        </td>
+                        <td style="text-align:left">
+      	            	  <label for="familymemberpay2_textbox">$</label>
+	                	  <input type="text" name="familymemberpay2_textbox" id="familymemberpay2_textbox" 
+	                	         placeholder="family member cost"  
+	                		     onKeyPress="enterMovesFocus(this,event,document.getElementById('familymemberpay2_textbox'))"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                        </td>
+                        <td style="text-align:left">
+	                	  <input type="text" name="familymembername3_textbox" id="familymembername3_textbox" size="40"
+	                	         placeholder="family member name"  
+	                		     onKeyPress="enterMovesFocus(this,event,document.getElementById('familymembername3_textbox'))"/>
+                        </td>
+                        <td style="text-align:left">
+      	            	  <label for="familymemberpay3_textbox">$</label>
+	                	  <input type="text" name="familymemberpay3_textbox" id="familymemberpay3_textbox" 
+	                	         placeholder="family member cost"  
+	                		     onKeyPress="enterMovesFocus(this,event,document.getElementById('familymemberpay3_textbox'))"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="text-align:left">
+      	            	  <label for="paymenttype_dropdown">I am paying the 'Total' by:</label>
+	                	  <select name="paymenttype_dropdown" id="paymenttype_dropdown" required
+	                	         placeholder="payment type"  
+	                		     onKeyPress="enterMovesFocus(this,event,document.getElementById('paymenttype_dropdown'))">
+	                		     <option value=""></option>
+	                		     <option value="Cash">Cash</option>
+	                		     <option value="Cheque">Cheque</option>
+	                		     <option value="E-Transfer">E-Transfer</option>
+               		      </select>
+               		    </td>
+               		    <td style="text-align:right">
+                		  <label><b>Total:</b></label>
+               		    </td>
+                        <td style="text-align:left">
+                          <label for="familymemberpaytotal_textbox"><b>$</b></label>
+	                	  <input type="text" name="familymemberpaytotal_textbox" id="familymemberpaytotal_textbox" 
+	                	         placeholder="total payment amount" required
+	                		     onKeyPress="enterMovesFocus(this,event,document.getElementById('familymemberpaytotal_textbox'))"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="text-align:left" colspan="3">
+                          <label>Please make cheques payable to: “Caledonia Ramblers Hiking Club”
+                          We accept payment of Membership Dues by e-transfer from your online bank account. Please send payment to
+                          <b>membership@caledoniaramblers.ca</b> – (auto-deposit)
+                          </label>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="text-align:left" colspan="3">
+                           <br>
+                           <hr>
+                           <br>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="text-align:left" colspan="3">
+                          <h2>PERSONAL INFORMATION PRIVACY ACT</h2>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="text-align:left" colspan="3">
+                          <label>The Caledonia Ramblers Hiking Club uses members’ personal information in the following ways:</label>  
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="text-align:left" colspan="3">
+                          <ul>
+                            <li>
+    Executive members’ names are listed on the website and the printed hiking schedule. They can be contacted at
+    caledoniaramblers@yahoo.ca. Hike leaders’ first names (only) and phone numbers are provided on the printed and
+    on-line trip schedule.
+                            </li>
+                            <li>
+    A club membership list, which includes names, phone numbers, and e-mail addresses, is circulated to all members.
+    The membership list (minus phone numbers) is also shared with FMCBC as required for the purpose of our
+    liability insurance, which is through FMCBC. They also use the list to distribute the FMCBC newsletter,
+    Cloudburst. The FMCBC does not sell, trade, rent or in any other way provide the list to any third party.
+                            </li>
+                            <li>
+    Photos taken by Club members on Club Trips may appear on the Club's Website, the Weekly Ramblings
+    Newsletter, and/or on social media sites.
+                            </li>
+                          </ul>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="text-align:left" colspan="3">
+                          <label><b>I consent to the use of my personal and confidential information as outlined above.</b></label>                        
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="text-align:center" colspan="3">
+      	            	  <label for="signature_textbox">Signature:</label>
+	                	  <input type="text" name="signature_textbox" id="signature_textbox" 
+	                	         placeholder="your signature" required
+	                		     onKeyPress="enterMovesFocus(this,event,document.getElementById('signature_textbox'))"/>
+      	            	  <label for="signaturedate_textbox">Date (yyyy-mm-dd):</label>
+	                	  <input type="text" name="signaturedate_textbox" id="signaturedate_textbox" 
+	                	         placeholder="date of signature" required
+	                		     onKeyPress="enterMovesFocus(this,event,document.getElementById('signaturedate_textbox'))"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="text-align:left" colspan="3">
+                            <label>
+                            Consent may be withdrawn at any time by contacting the club’s membership Director, Michael Anderson, at: crhc1974@gmail.com
+                            Email electronic forms to: crhc1974@gmail.com
+                            </label>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="text-align:left" colspan="3">
+                            <label color="red">
+                            by typing in my name above, I consent to the conditions of this membership
+                            </label>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="text-align:left" colspan="3">
+                           <br>
+                           <hr>
+                           <br>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="text-align:left" colspan="3">
+      	            	  <label>
+      	            	  <b>
+      	            	    Waiver forms MUST be signed on both front & back, dated and witnessed.
+                            Please mail non-electronically completed membership form, waiver(s) and fees
+                            (if not paid online) to:
+                          </b>
+                          </label>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="text-align:left" colspan="3">
+       					  <table border="2">
+           					  <tr>
+           					  <td style="text-align:left">
+              	            	  <label>Michael Anderson</label><br>
+              	            	  <label>Caledonia Ramblers Hiking Club</label><br>
+              	            	  <label>7620 Stillwater Crescent, Prince George, BC V2N 0C2</label>
+                              </td>
+                              <td style="text-align:right">
+                                  <div>
+                  	            	  <label for="receivedate_textbox">Date membership fee received:</label>
+	                            	  <input type="text" name="receivedate_textbox" id="receivedate_textbox" 
+	                            	         placeholder="date received"  
+	                            		     onKeyPress="enterMovesFocus(this,event,document.getElementById('receivedate_textbox'))"/>
+                        		  </div>
+                        		  <div>
+                  	            	  <label for="waiversigned_checkbox">Waiver(s) signed:</label>
+	                            	  <input type="checkbox" name="waiversigned_checkbox" id="waiversigned_checkbox" 
+	                            	         placeholder="waiver signed by member"/>
+                        		  </div>
+                              </td>
+                              </tr>
+                          </table>
+                        </td>
+                      </tr>
+                      
+           		    </table>
+                    
+	            </div>
+		
+ 		        {% if gvm.site.TWOFACTOR.ENABLED %}
+                <div style="text-align:left">
+                  <table>
+                    <tr>
+                        <td>
+                    	  <label for="accesscode_textbox">Access Code:</label>
+                    	  <input type="text" name="accesscode_textbox" id="accesscode_textbox" 
+                    	         placeholder="access code" required
+                    		     onKeyPress="enterMovesFocus(this,event,document.getElementById('accesscode_textbox'))"/>
+                    	</td>     
+                    	<td>
+                    	  <input type="button" id="btnAccessCode" value="Email a code" form="accessform" onclick="javascript:getAccessCodeAsynch()"/>
+                    	  
+                        </td>
+	                </tr>
+                    <tr>
+                        <td colspan=2 style="text-align:center">
+                    	  <span id="accesscode-msg" name="accesscode-msg" style="color:red"></span>
+                        </td>
+	                </tr>
+       		      <table>
+       		    </div>
+       		    {% endif %}
+		
+				<div >
+	            	<input type="submit" id="btnLogin" value="Submit" />
+	            </div>	
+				
+	        </form>
+                   
+        	<form action="{{ gvm.RR_DOC_ROOT }}/membership-signup-process.php?accesscode" method="post" 
+                    accept-charset="utf-8" id="accessform" name="accessform" target="access-form" 
+                    onsubmit="return getAccessCode()">
+              
+              <input type="hidden" id="emailaccess" name="emailaccess" />
+              
+                
+            </form>
+            <iframe style="display:none" name="access-form" id="access-form"></iframe>
+
+	        
+			</section>
+			</div>
+	
+
+        </div>
+    </body>
+    
+    <script type="text/JavaScript">
+    
+    function getAccessCodeAsynch() {
+        //debugger;
+        
+        if(getAccessCode() == true) {
+            var emailctl = document.getElementById('emailaddress_textbox');
+            var email = emailctl.value;
+        
+            var xhr = new XMLHttpRequest() 
+            xhr.open("POST", "{{ gvm.RR_DOC_ROOT }}/membership-signup-process.php?accesscode"); 
+            xhr.onreadystatechange = function (oEvent) {
+                //debugger;
+                
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                      console.log(xhr.responseText)
+                      document.getElementById('accesscode-msg').textContent = 'An Access Code was emailed to: ' + email;
+                    } 
+                    else {
+                       console.log("Error", xhr.statusText);
+                       document.getElementById('accesscode-msg').textContent = 'An error occured trying to email an Access Code to: ' + email;
+                    }
+                }
+            };
+            var formData = new FormData(document.getElementById("accessform")); 
+            xhr.send(formData);
+        }
+    }
+    
+    function getAccessCode() {
+       //debugger;
+       
+       document.getElementById('accesscode-msg').textContent = '';
+       document.getElementById('emailaccess').value = '';
+       
+       var emailctl = document.getElementById('emailaddress_textbox');
+       var email = emailctl.value;
+       if(email == '') {
+            document.getElementById('accesscode-msg').value = 'please enter a valid email address!';
+            emailctl.focus();
+            return false;
+       }
+       document.getElementById('emailaccess').value = email;
+       return true;
+    }
+    </script>
+    
+</html>

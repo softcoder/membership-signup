@@ -1,0 +1,29 @@
+#RewriteEngine On
+#RewriteCond %{HTTPS} off
+#RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]]
+
+<FilesMatch "\.log$">
+  Order allow,deny
+  Deny from all
+  Satisfy all
+</FilesMatch>
+
+<FilesMatch "\.json$">
+  Order allow,deny
+  Deny from all
+  Satisfy all
+</FilesMatch>
+
+<FilesMatch "\.ini$">
+  Order allow,deny
+  Deny from all
+  Satisfy all
+</FilesMatch>
+
+RewriteEngine On
+RewriteBase /
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond $1#%{REQUEST_URI} ([^#]*)#(.*?)\1$
+RewriteRule ^(.*)$ %2routes.php [QSA,L]
+
