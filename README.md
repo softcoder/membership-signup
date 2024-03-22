@@ -5,7 +5,7 @@ To see detailed unit test and code coverage stats visit: https://github.com/soft
 Membership-Signup
 =================
 
-<img src="https://github.com/softcoder/membership-signup/raw/master/screenshots/iconXX.png" align="left" >
+<img src="https://github.com/softcoder/membership-signup/blob/main/screenshots/iconXX.png" align="left" >
 
 A membership signup automation workflow
 Current Version: 1.0.0
