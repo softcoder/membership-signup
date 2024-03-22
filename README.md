@@ -45,6 +45,37 @@ System Requirements:
 - A webserver that can run PHP 8.x (such as Apache, IIS or NGinx)
 - PDF documents with named fields acting as templates
 
+Docker Image:
+-------------
+We provide a docker image with the basic environment installed here:
+https://hub.docker.com/repository/docker/softcoder/membership-signup/
+
+Example deployment to digitalocean.com (xxxxx is your API key):
+
+	docker-machine create --driver digitalocean --digitalocean-access-token xxxxx membership-signup
+	docker-machine env membership-signup
+	eval $(docker-machine env membership-signup)
+	docker run -d -p "80:80" --name membership-signup-demo softcoder/membership-signup:latest
+
+Discover the ip address of the droplet for example:
+
+        docker-machine ip membership-signup
+        138.197.70.45
+
+Goto the web url where you installed the docker image and test:
+
+        http://138.197.70.45/
+
+In order to set config values, you can override them as env variables:
+
+        docker run -p "80:80" -v ${PWD}/app:/app -e APP_SMTP_OutboundUsername='myemail@gmail.com' -e APP_SMTP_OutboundPassword='xx123' -e APP_SMTP_OutboundFromAddress='myemail@gmail.com' softcoder/membership-signup:latest
+
+This assumes that the host (outside of the docker container) has a folder named:
+
+        app/    <-- containing all the php files for membership-signup
+
+There is also a Dockerfile for deployment to Google Cloud Run full details:
+https://github.com/softcoder/membership-signup/tree/main/docker
 
 Installation:
 -------------
