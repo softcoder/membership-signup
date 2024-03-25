@@ -9,35 +9,35 @@ sudo docker build -t=softcoder/membership-signup:latest -f ./2204/Dockerfile .
 sudo docker run -p "80:80" -v ${PWD}/app:/app -e APP_SMTP_OutboundUsername='myemail@gmail.com' -e APP_SMTP_OutboundPassword='xx123' -e APP_SMTP_OutboundFromAddress='myemail@gmail.com' softcoder/membership-signup:latest  
 
 # ENV variables
-ENV APP_SMTP_OutboundHost "smtp.googlemail.com"
-ENV APP_SMTP_OutboundPort 587
-ENV APP_SMTP_OutboundEncrypt "tls"
-ENV APP_SMTP_OutboundAuth true
-ENV APP_SMTP_OutboundUsername "X@gmail.com"
-ENV APP_SMTP_OutboundPassword "XX"
-ENV APP_SMTP_OutboundFromAddress "X@gmail.com"
-ENV APP_SMTP_OutboundFromName "Membership Signup"
+ENV APP_SMTP_OutboundHost "smtp.googlemail.com" 
+ENV APP_SMTP_OutboundPort 587 
+ENV APP_SMTP_OutboundEncrypt "tls" 
+ENV APP_SMTP_OutboundAuth true 
+ENV APP_SMTP_OutboundUsername "X@gmail.com" 
+ENV APP_SMTP_OutboundPassword "XX" 
+ENV APP_SMTP_OutboundFromAddress "X@gmail.com" 
+ENV APP_SMTP_OutboundFromName "Membership Signup" 
 
-ENV APP_WEBSITE_Name "Local Test"
-ENV APP_WEBSITE_RootURL "/"
-ENV APP_WEBSITE_Timezone "America/Vancouver"
+ENV APP_WEBSITE_Name "Local Test" 
+ENV APP_WEBSITE_RootURL "/" 
+ENV APP_WEBSITE_Timezone "America/Vancouver" 
 
-ENV APP_PDF_OutputPath "output/"
-ENV APP_PDF_Membershipfile "forms/MembershipForm2024-2025.pdf"
-ENV APP_PDF_MembershipfileEmailViewTemplate "MembershipForm.pdf"
-ENV APP_PDF_Waiverfile "forms/E-waiver-FMCBC-Universal-Waiver-Basic-2022.pdf"
-ENV APP_PDF_WaiverfileEmailViewTemplate "E-waiver-FMCBC-Universal-Waiver-Basic.pdf"
-ENV APP_PDF_WebformEmailField "emailaddress"
-ENV APP_PDF_PDFTKPath ""
-ENV APP_PDF_EmailPDFToMember true
-#comma separated list of people to email a copy of the form
-ENV APP_PDF_EmailPDFToDirectors ""
-ENV APP_PDF_FormsDateRange "May 1, 2024 - April 30, 2025"
+ENV APP_PDF_OutputPath "output/" 
+ENV APP_PDF_Membershipfile "forms/MembershipForm2024-2025.pdf" 
+ENV APP_PDF_MembershipfileEmailViewTemplate "MembershipForm.pdf" 
+ENV APP_PDF_Waiverfile "forms/E-waiver-FMCBC-Universal-Waiver-Basic-2022.pdf" 
+ENV APP_PDF_WaiverfileEmailViewTemplate "E-waiver-FMCBC-Universal-Waiver-Basic.pdf" 
+ENV APP_PDF_WebformEmailField "emailaddress" 
+ENV APP_PDF_PDFTKPath "" 
+ENV APP_PDF_EmailPDFToMember true 
+#comma separated list of people to email a copy of the form 
+ENV APP_PDF_EmailPDFToDirectors "" 
+ENV APP_PDF_FormsDateRange "May 1, 2024 - April 30, 2025" 
 
-ENV APP_TWOFA_Enabled true
-ENV APP_TWOFA_TotpKey "DOCKER23MRL5AUQNK3G"
-# 60*45
-ENV APP_TWOFA_TotpTimeoutSeconds 2700
+ENV APP_TWOFA_Enabled true 
+ENV APP_TWOFA_TotpKey "DOCKER23MRL5AUQNK3G" 
+# 60*45 
+ENV APP_TWOFA_TotpTimeoutSeconds 2700 
 
 # To push the docker image to dockerhub  
 sudo docker push softcoder/membership-signup:latest  
