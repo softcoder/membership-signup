@@ -8,7 +8,7 @@ sudo docker build -t=softcoder/membership-signup:latest -f ./2204/Dockerfile .
 # To run the docker image (set environment variables to match your values)
 sudo docker run -p "80:80" -v ${PWD}/app:/app -e APP_SMTP_OutboundUsername='myemail@gmail.com' -e APP_SMTP_OutboundPassword='xx123' -e APP_SMTP_OutboundFromAddress='myemail@gmail.com' softcoder/membership-signup:latest  
 
-#ENV vars:
+# ENV variables
 ENV APP_SMTP_OutboundHost "smtp.googlemail.com"
 ENV APP_SMTP_OutboundPort 587
 ENV APP_SMTP_OutboundEncrypt "tls"
