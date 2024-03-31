@@ -39,9 +39,9 @@ ENV APP_TWOFA_TotpKey "DOCKER23MRL5AUQNK3G"
 # 60*45  
 ENV APP_TWOFA_TotpTimeoutSeconds 2700  
 
-# To connect to the running the docker image
-sudo docker ps (this will show you the name of the running container)
-sudo docker exec -it /bin/bash
+# To connect to the running the docker image  
+sudo docker ps (this will show you the name of the running container)  
+sudo docker exec -it /bin/bash  
 
 # To push the docker image to dockerhub  
 sudo docker push softcoder/membership-signup:latest  
