@@ -30,9 +30,7 @@ Thank you!
 Overview:
 -------------------------
 
-![Overview](/screenshots/membership-signup-diagram.png?raw=true "Overview")
-
-The diagram above shows all of the possible features enabled and the communication paths involved.
+This PHP app requires NO database and requires one library to process the PDF transformation of data from the webpage to the PDF document, the PDF library used is called PDFtk. Most of the behaviour is configurable.
 
 Technology:
 -------------------------
@@ -41,7 +39,7 @@ Membership Signup was written using PHP for its backend server operations and ht
 System Requirements:
 --------------------
 - An email account that can send emails to members
-- The PDFtk tool (free for non commercial use) https://www.pdflabs.com/tools/pdftk-server/
+- The PDFtk tool (free for non-commercial use) https://www.pdflabs.com/tools/pdftk-server/
 - A webserver that can run PHP 8.x (such as Apache, IIS or NGinx)
 - PDF documents with named fields acting as templates
 
@@ -79,7 +77,7 @@ https://github.com/softcoder/membership-signup/tree/main/docker
 
 Installation:
 -------------
-Getting started video - basic installation on Linux (click image below):
+Getting started video - basic installation on Linux (click the image below):
 
 [![Getting Started install](http://img.youtube.com/vi/HfDnYGbhWRQ/0.jpg)](https://youtu.be/HfDnYGbhWRQ)
 
@@ -192,7 +190,7 @@ https://github.com/softcoder/membership-signup/actions/workflows/php.yml
 
 Contributions:
 --------------
-Special thanks to all who have contributed to the success of this project. We accept patches and ideas from others and priortize based on time constraints and compatibility with our future direction.
+Special thanks to all who have contributed to the success of this project. We accept patches and ideas from others and prioritize based on time constraints and compatibility with our future direction.
 
 Contributors currently include:
 - The Caledonia Ramblers (https://caledoniaramblers.ca/) for all the great testing and feedback
