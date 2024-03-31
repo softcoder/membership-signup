@@ -122,9 +122,9 @@ It may be possible to manually install the PDFtk library on your Linux distribut
 script_dir=$(dirname $0)  
 export LD_LIBRARY_PATH=${script_dir}/  
 echo $script_dir  
-# download the correct binary for your distribution  
+#download the correct binary for your distribution  
 exec wget https://www.linuxglobal.com/static/blog/pdftk-2.02-1.el7.x86_64.rpm  
-# extract the PDFtk package  
+#extract the PDFtk package  
 exec rpm2cpio pdftk-2.02-1.el7.x86_64.rpm | cpio -idmv  
 cp ${script_dir}/usr/bin/pdftk ${script_dir}/usr/bin/pdftk-bin  
 cp ${script_dir}/pdftk.sh ${script_dir}/usr/bin/pdftk  
