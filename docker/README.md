@@ -45,7 +45,9 @@ sudo docker exec -it /bin/bash
 
 # To push the docker image to dockerhub  
 sudo docker push softcoder/membership-signup:latest  
-  
+
+
+Youtube Video here showing how  to customize the image using volume mapping: https://youtu.be/-SqDuF4TO28
 ---  
 
 2. Google Cloud Run:  
