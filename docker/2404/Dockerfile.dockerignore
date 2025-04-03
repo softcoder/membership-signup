@@ -1,0 +1,11 @@
+**/.git
+**/.gitignore
+**/CHANGELOG*
+**/circle.yml
+**/docker-compose.test.yml
+docs/
+tests/
+**/LICENSE
+**/README*
+**/Dockerfile*
+**/logo.png

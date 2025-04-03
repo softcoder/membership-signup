@@ -1,9 +1,9 @@
-membership-signup is a docker image that include the Docker-Lamp baseimage (Ubuntu 22.04), along with a LAMP stack ([Apache][apache], [MySQL][mysql] and [PHP][php]) all in one handy package.
+membership-signup is a docker image that include the Docker-Lamp baseimage (Ubuntu 24.04), along with a LAMP stack ([Apache][apache], [MySQL][mysql] and [PHP][php]) all in one handy package.
 
-1. With Ubuntu **22.04** image on the `latest-2204`, membership-signup is ready to test the Membership Signup app
+1. With Ubuntu **24.04** image on the `latest-2404`, membership-signup is ready to test the Membership Signup app
 
 # To build a new docker image  
-sudo docker build -t=softcoder/membership-signup:latest -f ./docker/2204/Dockerfile .  
+sudo docker build -t=softcoder/membership-signup:latest -f ./docker/2404/Dockerfile .  
 
 # To run the docker image (set environment variables to match your values)
 sudo docker run -p "80:80" -e APP_SMTP_OutboundUsername='myemail@gmail.com' -e APP_SMTP_OutboundPassword='xx123' -e APP_SMTP_OutboundFromAddress='myemail@gmail.com' softcoder/membership-signup:latest  
